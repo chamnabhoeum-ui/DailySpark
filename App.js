@@ -1,20 +1,31 @@
+import 'react-native-gesture-handler';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { ThemeProvider, useTheme } from './src/context/ThemeContext';
+import { HabitsProvider } from './src/context/HabitsContext';
+import DrawerNavigator from './src/navigation/DrawerNavigator';
 
-export default function App() {
+function Root() {
+  const { colors, isDark } = useTheme();
+  const base = isDark ? DarkTheme : DefaultTheme;
+  const theme = { ...base, colors: { ...base.colors, background: colors.bg, card: colors.surface,
+    text: colors.text, border: colors.line, primary: colors.accent } };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer theme={theme}>
+      <StatusBar style={isDark ? 'light' : 'dark'} />
+      <DrawerNavigator />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider><HabitsProvider><Root /></HabitsProvider></ThemeProvider>
+    </GestureHandlerRootView>
+  );
+}
+
+import './src/notifications';
