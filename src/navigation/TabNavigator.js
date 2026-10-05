@@ -18,3 +18,4 @@ export default function TabNavigator() {
     </Tab.Navigator>
   );
 }
+

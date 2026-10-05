@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useWindowDimensions } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import TabNavigator from './TabNavigator';
@@ -14,8 +14,9 @@ export default function DrawerNavigator() {
       drawerType: width >= 700 ? 'permanent' : 'front', // ADAPTIVE: permanent drawer on tablets
       drawerActiveTintColor: colors.accent, drawerStyle: { backgroundColor: colors.surface },
     }}>
-      <Drawer.Screen name="Home" component={TabNavigator} options={{ headerShown: false, title: '🔁 DailySpark' }} />
+      <Drawer.Screen name="Home" component={TabNavigator} options={{ headerShown: false, title: 'DailySpark' }} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
   );
 }
+

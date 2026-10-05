@@ -1,4 +1,4 @@
-import * as Notifications from 'expo-notifications';
+﻿import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 
 Notifications.setNotificationHandler({
@@ -25,7 +25,7 @@ export async function enableReminder(hour) {
   await Notifications.cancelScheduledNotificationAsync(ID).catch(() => {});
   await Notifications.scheduleNotificationAsync({
     identifier: ID,
-    content: { title: 'DailySpark ??', body: "Complete today's habits to keep your streak alive!" },
+    content: { title: 'DailySpark \u{1F525}', body: "Complete today's habits to keep your streak alive!" },
     trigger: { type: Notifications.SchedulableTriggerInputTypes.DAILY, hour, minute: 0, channelId: 'reminders' },
   });
   return true;
@@ -36,8 +36,9 @@ export const disableReminder = () => Notifications.cancelScheduledNotificationAs
 export async function sendTest() {
   if (!(await ensurePermission())) return false;
   await Notifications.scheduleNotificationAsync({
-    content: { title: 'DailySpark ??', body: 'Test: keep your streak alive!' },
+    content: { title: 'DailySpark \u{1F525}', body: 'Test: keep your streak alive!' },
     trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: 5, channelId: 'reminders' },
   });
   return true;
 }
+
